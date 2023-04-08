@@ -55,7 +55,7 @@ alredy logged or not through this
 
 # Structure of Programe
 
-
+-------------------------------
 |- pkg
 |---------------------------------
 |   |- controller
@@ -87,6 +87,7 @@ alredy logged or not through this
 |- go.sum
 |- main.go
 |- Readme.md
+------------------------------
 
 # .env Details
 
