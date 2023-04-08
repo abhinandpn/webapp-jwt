@@ -55,8 +55,7 @@ alredy logged or not through this
 
 # Structure of Programe
 
-    JWT
-|---------------------------------
+
 |- pkg
 |---------------------------------
     |- controller
