@@ -25,20 +25,20 @@ alredy logged or not through this
 
 # USER SPECIFICATION
 
-> LogIn
-> SignUp
-> Edit Profile
+LogIn
+SignUp
+dit Profile
 
 # ADMIN SPECIFICATION
 
-> LogIn
-> SignUp
-> Add Admin
+LogIn
+SignUp
+Add Admin
 
-> More-function
-    ~ List All User
-    ~ Edit User
-    ~ Delete User
+More-function
+    List All User
+    Edit User
+    Delete User
 
 
 ------------Routes And HTTP Method-----------
