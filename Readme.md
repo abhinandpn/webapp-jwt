@@ -58,30 +58,30 @@ alredy logged or not through this
 
 |- pkg
 |---------------------------------
-    |- controller
-    ------------------------------
-       |- adminController.go
-       |- usercontroller.go
-    |- database
-    ------------------------------
-       |-adminDB.go
-       |-connectToDB.go
-       |-userDB.go
-    |- initilaizer
-    ------------------------------
-       |- loadEnvVariable.go
-    |- middleware
-    ------------------------------
-       |- adminAuth.go
-       |- userAuth.go
-    |- models
-    ------------------------------
-       |- adminModel.go
-       |- userModel.go
-    |- route
-    ------------------------------
-       |- adminRoute.go
-       |- userRoute.go
+|   |- controller
+|   ------------------------------
+|      |- adminController.go
+|      |- usercontroller.go
+|   |- database
+|   ------------------------------
+|      |-adminDB.go
+|      |-connectToDB.go
+|      |-userDB.go
+|   |- initilaizer
+|   ------------------------------
+|      |- loadEnvVariable.go
+|   |- middleware
+|   ------------------------------
+|      |- adminAuth.go
+|      |- userAuth.go
+|   |- models
+|  ------------------------------
+|      |- adminModel.go
+|      |- userModel.go
+|   |- route
+|   ------------------------------
+|      |- adminRoute.go
+|      |- userRoute.go
 |- .env
 |- go.mod
 |- go.sum
