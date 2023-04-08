@@ -5,16 +5,16 @@ Simple web application written in golang using postgres database
 
 Package used for this WebApp
 
-| `GORM `    | `https://gorm.io/`                              | For Database opration                  |
------------ ----------------------------------------------- ---------------------------------------- --
-| `GIN`      | `https://gin-gonic.com/`                        | For HTTP web framework                 |
------------ ----------------------------------------------- ---------------------------------------- --
-| `CRYPTO`   | `https://pkg.go.dev/golang.org/x/crypto@v0.8.0` | Password encryption and decryption     | 
------------ ----------------------------------------------- ---------------------------------------- --
-| `JWT`      | `https://pkg.go.dev/github.com/golang-jwt/jwt`  | For implementation of JSON Web Tokens  |
------------ ----------------------------------------------- ---------------------------------------- --
-| `GODOTENV` | `https://github.com/joho/godotenv`              | For loads env vars from a .env file    |
-------------- ------------------------------------------------- ----------------------------------------
+| `GORM `    | `https://gorm.io/`                              | For Database opration                 |
+|---------- -|--------------------------------------------- ---|------------------------------------ - |
+| `GIN`      | `https://gin-gonic.com/`                        | For HTTP web framework                | 
+|---------- -|--------------------------------------------- ---|------------------------------------ - |
+| `CRYPTO`   | `https://pkg.go.dev/golang.org/x/crypto@v0.8.0` | Password encryption and decryption    |  
+|---------- -|--------------------------------------------- ---|------------------------------------ - |
+| `JWT`      | `https://pkg.go.dev/github.com/golang-jwt/jwt`  | For implementation of JSON Web Tokens | 
+|---------- -|--------------------------------------------- ---|------------------------------------ - |
+| `GODOTENV` | `https://github.com/joho/godotenv`              | For loads env vars from a .env file   | 
+|------------|-------------------------------------------------|-------------------------------------- |
 
 
 Token for JWT Authentication
