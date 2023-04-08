@@ -62,9 +62,13 @@ alredy logged or not through this
 
 * customize with your detail
     > user      = "your postgres username"
+    
     > password  = "password of your postgres user"
+    
     > database  = "your server name"
+    
     > localhost = "your host"
+    
 
     > PORT      = 8080
     > DATABASE  = "host=localhost user="user" password="password" dbname="database" port="port"             sslmode=disable"
