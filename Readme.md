@@ -1,7 +1,7 @@
 
-WEB-APP
+# WEB-APP
  
-Simple web application written in golang using postgres database
+## Simple web application written in golang using postgres database
 
 Package used for this WebApp
 
