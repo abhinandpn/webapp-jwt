@@ -58,16 +58,24 @@ Delete User
 > Admin route
 
     POST     /adminlogin
+    
 	POST     /addadmin
+	
 	GET      /userview
+	
 	GET      /deleteuser
+	
 	PUT      /edituser
+	
 
 > User route
 
 	POST    /signup
+	
 	POST    /login
+	
 	GET     /validate
+	
 
 
 # .env Details
