@@ -23,22 +23,34 @@ alredy logged or not through this
 * User token is saved as USERTOKEN
 * Admin token is seved as ADMINTOKEN
 
+
 # USER SPECIFICATION
 
 LogIn
+
 SignUp
+
 dit Profile
+
 
 # ADMIN SPECIFICATION
 
+
 LogIn
+
 SignUp
+
 Add Admin
 
+
 More-function
+
     List All User
+    
     Edit User
+    
     Delete User
+    
 
 
 ------------Routes And HTTP Method-----------
