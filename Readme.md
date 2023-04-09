@@ -1,20 +1,16 @@
 
-# WEB-APP
+WEB-APP
  
-## Simple web application written in golang using postgres database
+Simple web application written in golang using postgres database
+
 
 Package used for this WebApp
 
-| `GORM `    | `https://gorm.io/`                              | For Database opration                  |
------------ ----------------------------------------------- ---------------------------------------- --
-| `GIN`      | `https://gin-gonic.com/`                        | For HTTP web framework                 |
------------ ----------------------------------------------- ---------------------------------------- --
-| `CRYPTO`   | `https://pkg.go.dev/golang.org/x/crypto@v0.8.0` | Password encryption and decryption     | 
------------ ----------------------------------------------- ---------------------------------------- --
-| `JWT`      | `https://pkg.go.dev/github.com/golang-jwt/jwt`  | For implementation of JSON Web Tokens  |
------------ ----------------------------------------------- ---------------------------------------- --
-| `GODOTENV` | `https://github.com/joho/godotenv`              | For loads env vars from a .env file    |
-
+GORM        : https://gorm.io/                                 For Database opration
+GIN         : https://gin-gonic.com/                           For HTTP web framework
+CRYPTO      : https://pkg.go.dev/golang.org/x/crypto@v0.8.0    Password encryption and decryption
+JWT         : https://pkg.go.dev/github.com/golang-jwt/jwt     For implementation of JSON Web Tokens.
+GODOTENV    : https://github.com/joho/godotenv                 For loads env vars from a .env file
 
 Token for JWT Authentication
 and also using if the user or admin is 
@@ -23,34 +19,22 @@ alredy logged or not through this
 * User token is saved as USERTOKEN
 * Admin token is seved as ADMINTOKEN
 
-
 # USER SPECIFICATION
 
-LogIn
-
-SignUp
-
-dit Profile
-
+> LogIn
+> SignUp
+> Edit Profile
 
 # ADMIN SPECIFICATION
 
+> LogIn
+> SignUp
+> Add Admin
 
-LogIn
-
-SignUp
-
-Add Admin
-
-
-More-function
-
-List All User
-
-Edit User
-
-Delete User
-    
+> More-function
+    ~ List All User
+    ~ Edit User
+    ~ Delete User
 
 
 ------------Routes And HTTP Method-----------
@@ -58,37 +42,25 @@ Delete User
 > Admin route
 
     POST     /adminlogin
-    
 	POST     /addadmin
-	
 	GET      /userview
-	
 	GET      /deleteuser
-	
 	PUT      /edituser
-	
 
 > User route
 
 	POST    /signup
-	
 	POST    /login
-	
 	GET     /validate
-	
 
 
 # .env Details
 
 * customize with your detail
     > user      = "your postgres username"
-    
     > password  = "password of your postgres user"
-    
     > database  = "your server name"
-    
     > localhost = "your host"
-    
 
     > PORT      = 8080
     > DATABASE  = "host=localhost user="user" password="password" dbname="database" port="port"             sslmode=disable"
@@ -97,7 +69,6 @@ Delete User
     // You can edit the key
 
     > SCRECTKEY = AHDBHSIHSNNSGHSHSJHJ
-    
     > ADMINKEY  = KAHNDKJDHBMKJSNND
 
 
