@@ -236,7 +236,7 @@ func UserDelete(c *gin.Context) {
 
 		c.JSON(http.StatusNotFound, gin.H{
 
-			"error": "user not found",
+			"error": "user not found ",
 		})
 
 		return
@@ -271,13 +271,19 @@ func EditUser(c *gin.Context) {
 	// Check if the user exists
 	var user models.User
 
+	// if err := database.DB.Where("id = ?", id).First(&user).Error; err != nil {
+	// 	c.JSON(http.StatusNotFound, gin.H{
+	// 		"error": "user not found  1 ",
+	// 	})
+	// 	return
+	// }
+
 	if err := database.DB.Where("id = ?", id).First(&user).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{
-			"error": "user not found  1 ",
+			"error": "user not found",
 		})
 		return
 	}
-
 	// Parse JSON request body
 	var newUser models.User
 	if err := c.BindJSON(&newUser); err != nil {
