@@ -101,7 +101,8 @@ func AdminLogin(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 
-		"token": tokenString,
+		"token":   tokenString,
+		"message": "admin login sucess",
 	})
 }
 
@@ -180,7 +181,8 @@ func AddAdmin(c *gin.Context) {
 
 		c.JSON(http.StatusBadRequest, gin.H{
 
-			"error": result.Error.Error(),
+			"error":   result.Error.Error(),
+			"message": "error !!!",
 		})
 		return
 	}
@@ -268,9 +270,10 @@ func EditUser(c *gin.Context) {
 
 	// Check if the user exists
 	var user models.User
+
 	if err := database.DB.Where("id = ?", id).First(&user).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{
-			"error": "user not found",
+			"error": "user not found  1 ",
 		})
 		return
 	}

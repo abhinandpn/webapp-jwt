@@ -45,6 +45,7 @@ func UserAuth(c *gin.Context) {
 		}
 
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["sub"])
 		}
 

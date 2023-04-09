@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"jwt/pkg/database"
 	"jwt/pkg/models"
 	"net/http"
@@ -37,6 +38,7 @@ func SignUpUser(c *gin.Context) {
 
 			"error": "failed to read new user",
 		})
+		return
 	}
 
 	var user models.User
@@ -112,6 +114,7 @@ func LoginUser(c *gin.Context) {
 
 			"error": "failed to read new user",
 		})
+		return
 	}
 
 	// Lookup requested user
@@ -179,7 +182,7 @@ func LoginUser(c *gin.Context) {
 	})
 }
 
-// validation
+// user profile
 
 func UserProfile(c *gin.Context) {
 
@@ -189,7 +192,8 @@ func UserProfile(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 
-		"message": user,
+		"username": user.(models.User).Name,
+		"email":    user.(models.User).Email,
 	})
 }
 
@@ -198,40 +202,95 @@ func UserEdit(c *gin.Context) {
 
 	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 
-	id := c.Param("id")
+	user, _ := c.Get("user")
 
-	// Check if the user exists
-	var user models.User
-	if err := database.DB.Where("id = ?", id).First(&user).Error; err != nil {
-		c.JSON(http.StatusNotFound, gin.H{
-			"error": "user not found",
-		})
-		return
+	var body struct {
+		Name  string
+		Email string
 	}
-
-	// Parse JSON request body
-	var newUser models.User
-	if err := c.BindJSON(&newUser); err != nil {
+	if c.Bind(&body) != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": "failed to read new user",
 		})
 		return
 	}
 
-	// Update the user
-	if err := database.DB.Model(&user).Updates(newUser).Error; err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": "failed to update user",
+	userid := user.(models.User).ID
+	// username := user.(models.User).Name
+	// usermail := user.(models.User).Email
+	var editQuery string
+
+	if body.Email == "" && body.Name == "" {
+
+		c.JSON(http.StatusBadRequest, gin.H{
+
+			"error": "update with current detail",
 		})
-		return
+
+	} else if body.Email == "" {
+		// for updating name only
+		editQuery = fmt.Sprintf("UPDATE users SET name = '%s' WHERE id = %v", body.Name, userid)
+
+		c.JSON(http.StatusBadRequest, gin.H{
+
+			"message": "updating name......!!",
+		})
+
+	} else if body.Name == "" {
+		// for updating email only
+
+		editQuery = fmt.Sprintf("UPDATE users SET email = '%s' WHERE id = %v", body.Email, userid)
+
+		c.JSON(http.StatusBadRequest, gin.H{
+
+			"message": "updating Email......!!",
+		})
+
+	} else {
+		// for updating both
+		editQuery = fmt.Sprintf("UPDATE users SET email = '%s' , name = '%s' WHERE id = %v", body.Email, body.Name, userid)
+
+		c.JSON(http.StatusBadRequest, gin.H{
+
+			"message": "updating Name and Email......!!",
+		})
 	}
 
-	// Return success response
-	rowsAffected := database.DB.RowsAffected
-	c.JSON(http.StatusOK, gin.H{
-		"message":      "user updated successfully",
-		"rowsAffected": rowsAffected,
-	})
+	fmt.Println(editQuery)
+
+	// var user models.User
+
+	database.DB.Raw(editQuery).Scan(&user)
+
+	if body.Email == "" {
+		// for updating name only
+
+		c.JSON(http.StatusBadRequest, gin.H{
+
+			"message":  "Name Updated",
+			"new name": body.Name,
+		})
+
+	} else if body.Name == "" {
+		// for updating email only
+
+		c.JSON(http.StatusBadRequest, gin.H{
+
+			"message":   "Email Updated",
+			"new email": body.Email,
+		})
+
+	} else {
+		// for updating both
+
+		c.JSON(http.StatusBadRequest, gin.H{
+
+			"message":   "Name and Email Updated",
+			"New name":  body.Name,
+			"New Email": body.Email,
+		})
+	}
+
 }
 
 // Logout
