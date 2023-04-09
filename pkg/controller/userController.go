@@ -175,13 +175,13 @@ func LoginUser(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 
-		"token": tokenString,
+		"message": "login sucess",
 	})
 }
 
 // validation
 
-func Validation(c *gin.Context) {
+func UserProfile(c *gin.Context) {
 
 	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 
@@ -190,6 +190,47 @@ func Validation(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 
 		"message": user,
+	})
+}
+
+// Edit User
+func UserEdit(c *gin.Context) {
+
+	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+
+	id := c.Param("id")
+
+	// Check if the user exists
+	var user models.User
+	if err := database.DB.Where("id = ?", id).First(&user).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{
+			"error": "user not found",
+		})
+		return
+	}
+
+	// Parse JSON request body
+	var newUser models.User
+	if err := c.BindJSON(&newUser); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "failed to read new user",
+		})
+		return
+	}
+
+	// Update the user
+	if err := database.DB.Model(&user).Updates(newUser).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{
+			"error": "failed to update user",
+		})
+		return
+	}
+
+	// Return success response
+	rowsAffected := database.DB.RowsAffected
+	c.JSON(http.StatusOK, gin.H{
+		"message":      "user updated successfully",
+		"rowsAffected": rowsAffected,
 	})
 }
 

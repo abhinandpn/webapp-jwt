@@ -25,7 +25,7 @@ func AdminLogin(c *gin.Context) {
 
 	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 
-	// Get the name email and passs from current user
+	// Get the name email and passs from current admin
 	var body struct {
 		Name     string
 		Email    string
@@ -40,7 +40,7 @@ func AdminLogin(c *gin.Context) {
 		})
 	}
 
-	// Lookup requested user
+	// Lookup requested admin
 
 	var admin models.Admin
 
