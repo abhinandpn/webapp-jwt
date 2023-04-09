@@ -6,11 +6,11 @@ Simple web application written in golang using postgres database
 
 Package used for this WebApp
 
-GORM        : https://gorm.io/                                 For Database opration
-GIN         : https://gin-gonic.com/                           For HTTP web framework
-CRYPTO      : https://pkg.go.dev/golang.org/x/crypto@v0.8.0    Password encryption and decryption
-JWT         : https://pkg.go.dev/github.com/golang-jwt/jwt     For implementation of JSON Web Tokens.
-GODOTENV    : https://github.com/joho/godotenv                 For loads env vars from a .env file
+`GORM`        : `https://gorm.io/                                 For Database opration
+`GIN`         : `https://gin-gonic.com/                           For HTTP web framework
+`CRYPTO`      : `https://pkg.go.dev/golang.org/x/crypto@v0.8.0    Password encryption and decryption
+`JWT`         : `https://pkg.go.dev/github.com/golang-jwt/jwt     For implementation of JSON Web Tokens.
+`GODOTENV`    : `https://github.com/joho/godotenv                 For loads env vars from a .env file
 
 Token for JWT Authentication
 and also using if the user or admin is 
@@ -22,8 +22,12 @@ alredy logged or not through this
 ## USER SPECIFICATION
 
 LogIn
+
 SignUp
+
 Edit Profile
+
+User Profile Viewer
 
 ## ADMIN SPECIFICATION
 
@@ -41,7 +45,7 @@ Delete User
 
 
 
-------------Routes And HTTP Method-----------
+# ------------Routes And HTTP Method-----------
 
 > Admin route
 
@@ -73,6 +77,7 @@ Delete User
     // You can edit the key
 
     > SCRECTKEY = AHDBHSIHSNNSGHSHSJHJ
+    
     > ADMINKEY  = KAHNDKJDHBMKJSNND
 
 
