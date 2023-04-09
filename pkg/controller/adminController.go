@@ -264,47 +264,84 @@ func UserDelete(c *gin.Context) {
 
 func EditUser(c *gin.Context) {
 
-	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+	// c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 
-	id := c.Param("id")
+	// Parse the JSON request body
+	var updateUser models.User
+	if err := c.BindJSON(&updateUser); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "failed to read request body",
+		})
+		return
+	}
 
 	// Check if the user exists
 	var user models.User
-
-	// if err := database.DB.Where("id = ?", id).First(&user).Error; err != nil {
-	// 	c.JSON(http.StatusNotFound, gin.H{
-	// 		"error": "user not found  1 ",
-	// 	})
-	// 	return
-	// }
-
-	if err := database.DB.Where("id = ?", id).First(&user).Error; err != nil {
+	if err := database.DB.Where("id = ?", updateUser.ID).First(&user).Error; err != nil {
 		c.JSON(http.StatusNotFound, gin.H{
 			"error": "user not found",
 		})
 		return
 	}
-	// Parse JSON request body
-	var newUser models.User
-	if err := c.BindJSON(&newUser); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "failed to read new user",
-		})
-		return
-	}
 
-	// Update the user
-	if err := database.DB.Model(&user).Updates(newUser).Error; err != nil {
+	// Update the user in the database
+	if err := database.DB.Model(&user).Updates(updateUser).Error; err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": "failed to update user",
 		})
 		return
 	}
 
-	// Return success response
-	rowsAffected := database.DB.RowsAffected
+	// Return a success response
 	c.JSON(http.StatusOK, gin.H{
-		"message":      "user updated successfully",
-		"rowsAffected": rowsAffected,
+		"message": "user updated successfully",
 	})
+
+	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+
+	// Get user ID from the request parameters
+	// userID := c.Param("id")
+	// if userID == "" {
+	// 	c.JSON(http.StatusBadRequest, gin.H{
+	// 		"error": "invalid user ID",
+	// 	})
+	// 	return
+	// }
+
+	// // Check if the user exists
+	// var user models.User
+	// if err := database.DB.Where("id = ?", userID).First(&user).Error; err != nil {
+	// 	if errors.Is(err, gorm.ErrRecordNotFound) {
+	// 		c.JSON(http.StatusNotFound, gin.H{
+	// 			"error": "user not found",
+	// 		})
+	// 	} else {
+	// 		c.JSON(http.StatusInternalServerError, gin.H{
+	// 			"error": "failed to get user",
+	// 		})
+	// 	}
+	// 	return
+	// }
+
+	// // Parse the JSON request body
+	// var updateUser models.User
+	// if err := c.ShouldBindJSON(&updateUser); err != nil {
+	// 	c.JSON(http.StatusBadRequest, gin.H{
+	// 		"error": "invalid request body",
+	// 	})
+	// 	return
+	// }
+
+	// // Update the user in the database
+	// if err := database.DB.Model(&user).Updates(updateUser).Error; err != nil {
+	// 	c.JSON(http.StatusInternalServerError, gin.H{
+	// 		"error": "failed to update user",
+	// 	})
+	// 	return
+	// }
+
+	// // Return a success response
+	// c.JSON(http.StatusOK, gin.H{
+	// 	"message": "user updated successfully",
+	// })
 }
