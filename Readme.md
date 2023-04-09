@@ -28,13 +28,17 @@ Edit Profile
 ## ADMIN SPECIFICATION
 
 LogIn
+
 SignUp
+
 Add Admi
-More-function
 
 List All User
+
 Edit User
+
 Delete User
+
 
 
 ------------Routes And HTTP Method-----------
