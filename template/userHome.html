@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Home Page</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" integrity="sha384-r4NyP46KrjDleawBgD5tp8Y7UzmLA05oM1iAEQ17CSuDqnUK2+k9luXQOfXJCJ4I" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+</head>
+<body>
+  <!-- nabar start -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container mt-2 mb-3">
+        <div class="row justify-content-between">
+            <div class="col-4">
+                <h2 class=" text-dark">Welcome {{.UserName}} </h2>    
+            </div>
+            <div class="col-2">
+                
+                
+            </div>
+
+            <div class="col-2 ">
+                <div class="row ">
+                    <a href="/edituser"><button class="btn btn-info">Edit Profile</button></a>
+                </div>
+                
+            </div>
+            <div class="col-2">
+                <div class="row justify-content-end">
+                    <a href="/logout"><button class="btn btn-danger">Logout</button></a>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</nav>
+<div>
+    <h1><center>
+    <br><br><br><br>
+
+    WELCOME
+
+    </center>
+    </h1>
+</div>
+<!-- <div>
+    <CENTER>
+        <BR><BR><BR><BR><BR></BR></BR></BR></BR></BR>
+        <h1>
+            WELCOME TO <A href="https://infinita-dev.github.io/infinita/" target="_blank">infinita-dev</A>
+        </h1>
+    </CENTER>
+</div> -->
+
+<!-- navbar end  -->
+</body>
+</html>
