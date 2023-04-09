@@ -70,7 +70,9 @@ Delete User
 
 	POST    /signup
 	POST    /login
-	GET     /validate
+	GET     /userprofile
+    PUT     /useredit
+
 
 
 # .env Details
