@@ -131,3 +131,7 @@ Delete User
 6. Sent responce
 
 
+Upcomming Function
+ * Admin can block user
+Upcomming Functionality
+ * Template Loading and Front End Design
