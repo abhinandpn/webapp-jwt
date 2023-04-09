@@ -54,7 +54,7 @@ Delete User
 
     3. go run main.go
 
-* Use this route for working eg: localhost://8080/login
+    * Use this route for working eg: localhost://8080/login
 
 # ------------Routes And HTTP Method-----------
 
