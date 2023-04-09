@@ -30,7 +30,9 @@ LogIn
 
 SignUp
 
-dit Profile
+Edit Profile
+
+View Profile
 
 
 # ADMIN SPECIFICATION
@@ -74,7 +76,9 @@ Delete User
 	
 	POST    /login
 	
-	GET     /validate
+	GET     /userview
+	
+	Put	/useredit
 	
 
 
