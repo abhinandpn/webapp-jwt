@@ -46,7 +46,15 @@ Edit User
 
 Delete User
 
+# Run this Code
 
+    1. Run your server eg: local server with postgres database
+
+    2. Give the database details to .env file
+
+    3. go run main.go
+
+* Use this route for working eg: localhost://8080/login
 
 # ------------Routes And HTTP Method-----------
 
@@ -119,3 +127,5 @@ Delete User
 4. Update the user information
 5. Update the database 
 6. Sent responce
+
+
