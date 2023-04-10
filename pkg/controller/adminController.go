@@ -101,7 +101,7 @@ func AdminLogin(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{
 
-		"token":   tokenString,
+		// "token":   tokenString,
 		"message": "admin login sucess",
 	})
 }
