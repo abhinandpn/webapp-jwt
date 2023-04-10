@@ -264,7 +264,7 @@ func UserDelete(c *gin.Context) {
 
 func EditUser(c *gin.Context) {
 
-	// c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 
 	// Parse the JSON request body
 	var updateUser models.User
@@ -296,7 +296,5 @@ func EditUser(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message": "user updated successfully",
 	})
-
-	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 
 }
