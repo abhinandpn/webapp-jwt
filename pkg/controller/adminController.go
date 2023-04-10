@@ -299,49 +299,4 @@ func EditUser(c *gin.Context) {
 
 	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 
-	// Get user ID from the request parameters
-	// userID := c.Param("id")
-	// if userID == "" {
-	// 	c.JSON(http.StatusBadRequest, gin.H{
-	// 		"error": "invalid user ID",
-	// 	})
-	// 	return
-	// }
-
-	// // Check if the user exists
-	// var user models.User
-	// if err := database.DB.Where("id = ?", userID).First(&user).Error; err != nil {
-	// 	if errors.Is(err, gorm.ErrRecordNotFound) {
-	// 		c.JSON(http.StatusNotFound, gin.H{
-	// 			"error": "user not found",
-	// 		})
-	// 	} else {
-	// 		c.JSON(http.StatusInternalServerError, gin.H{
-	// 			"error": "failed to get user",
-	// 		})
-	// 	}
-	// 	return
-	// }
-
-	// // Parse the JSON request body
-	// var updateUser models.User
-	// if err := c.ShouldBindJSON(&updateUser); err != nil {
-	// 	c.JSON(http.StatusBadRequest, gin.H{
-	// 		"error": "invalid request body",
-	// 	})
-	// 	return
-	// }
-
-	// // Update the user in the database
-	// if err := database.DB.Model(&user).Updates(updateUser).Error; err != nil {
-	// 	c.JSON(http.StatusInternalServerError, gin.H{
-	// 		"error": "failed to update user",
-	// 	})
-	// 	return
-	// }
-
-	// // Return a success response
-	// c.JSON(http.StatusOK, gin.H{
-	// 	"message": "user updated successfully",
-	// })
 }
