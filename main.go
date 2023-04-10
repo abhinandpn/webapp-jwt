@@ -9,10 +9,12 @@ import (
 )
 
 func init() {
+
 	initializer.LoadEnvVariable()
 	database.ConnectToDB()
 	database.UserDB()
 	database.AdminDB()
+
 }
 func main() {
 
