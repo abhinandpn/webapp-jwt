@@ -1,12 +1,12 @@
 package models
 
 type User struct {
-	ID            uint `gorm:"primaryKey"`
-	Name          string
-	Email         string `gorm:"unique"`
-	Password      string
-	Block_status  bool
-	delete_status bool
+	ID           uint `gorm:"primaryKey"`
+	Name         string
+	Email        string `gorm:"unique"`
+	Password     string
+	Block_status bool
+	// delete_status bool
 }
 
 /*
