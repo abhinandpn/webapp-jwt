@@ -21,6 +21,8 @@ Delete 	User
 Edit 	user
 */
 
+var AdminLogStatus = false
+
 func AdminLogin(c *gin.Context) {
 
 	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
@@ -104,6 +106,8 @@ func AdminLogin(c *gin.Context) {
 		// "token":   tokenString,
 		"message": "admin login sucess",
 	})
+
+	AdminLogStatus = true
 }
 
 func AdminLogout(c *gin.Context) {
@@ -123,6 +127,15 @@ func AdminLogout(c *gin.Context) {
 func AddAdmin(c *gin.Context) {
 
 	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+
+	ok := AdminLogStatus
+
+	if ok {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "failed to read Admin",
+		})
+		return
+	}
 
 	// Get name,email and pass from request
 
@@ -197,6 +210,15 @@ func AddAdmin(c *gin.Context) {
 
 func UserView(c *gin.Context) {
 
+	ok := AdminLogStatus
+
+	if ok {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "failed to read Admin",
+		})
+		return
+	}
+
 	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 
 	UserViewQuery := `
@@ -264,6 +286,15 @@ func UserDelete(c *gin.Context) {
 
 func EditUser(c *gin.Context) {
 
+	ok := AdminLogStatus
+
+	if ok {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"error": "failed to read Admin",
+		})
+		return
+	}
+
 	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 
 	// Parse the JSON request body
@@ -296,5 +327,9 @@ func EditUser(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message": "user updated successfully",
 	})
+
+}
+
+func BlockUser(c *gin.Context) {
 
 }
