@@ -134,7 +134,7 @@ Delete User
 ---------------------------------------------------------------------------------
 Upcomming Function
 
- * Admin can block user
+ * Admin can block user  --  > sComming soon..!!
  * When Admin Delete user only update database Delete_status value
  * User can delete Profile
  * When user delete profile only update database Delete_Status value
