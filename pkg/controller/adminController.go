@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"fmt"
 	"jwt/pkg/database"
 	"jwt/pkg/models"
 	"net/http"
@@ -210,6 +211,8 @@ func AddAdmin(c *gin.Context) {
 
 func UserView(c *gin.Context) {
 
+	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+
 	ok := AdminLogStatus
 
 	if ok {
@@ -218,8 +221,6 @@ func UserView(c *gin.Context) {
 		})
 		return
 	}
-
-	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 
 	UserViewQuery := `
 	select id,name,email from users order by id asc;
@@ -331,5 +332,66 @@ func EditUser(c *gin.Context) {
 }
 
 func BlockUser(c *gin.Context) {
+
+	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+
+	var UserId struct {
+		ID int `json:"id" binding:"required"`
+	}
+
+	if err := c.ShouldBindJSON(&UserId); err != nil {
+
+		c.JSON(http.StatusBadRequest, gin.H{
+
+			"error": "failed to read request",
+		})
+
+		return
+	}
+
+	// Check if the user exists
+
+	var user models.User
+
+	if err := database.DB.Where("id = ?", UserId.ID).First(&user).Error; err != nil {
+
+		c.JSON(http.StatusNotFound, gin.H{
+
+			"error": "user not found ",
+		})
+
+		return
+	}
+	fmt.Println("----------------->>>", user)
+	// Prev Status
+
+	c.JSON(http.StatusOK, gin.H{
+
+		"User Previous Blocked Status": user.BlockStatus,
+	})
+
+	// database.DB.Model(&user).Where("id = ?", UserId).Update("block_status", false)
+	if user.BlockStatus {
+		unblock := `update users set block_status=$1 where id=$2 `
+		if err := database.DB.Exec(unblock, false, user.ID).Error; err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"err": "cant unblock",
+			})
+		}
+	} else {
+		block := `update users set block_status=$1 where id=$2 `
+		if err := database.DB.Exec(block, true, user.ID).Error; err != nil {
+			c.JSON(http.StatusBadRequest, gin.H{
+				"err": "cant block user",
+			})
+		}
+	}
+
+	c.JSON(http.StatusOK, gin.H{
+
+		"user id ":  user.ID,
+		"user Name": user.Name,
+		"allert":    "This User is Blocked Now ..............!!",
+	})
 
 }

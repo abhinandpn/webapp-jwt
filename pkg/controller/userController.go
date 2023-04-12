@@ -20,8 +20,6 @@ Log-Out 		function
 Edit-Profile 	function
 */
 
-var UserLogStatus = false
-
 func SignUpUser(c *gin.Context) {
 
 	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
@@ -97,7 +95,7 @@ func SignUpUser(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"message": "sucess to create user",
 	})
-	UserLogStatus = true
+
 }
 
 func LoginUser(c *gin.Context) {
@@ -135,7 +133,15 @@ func LoginUser(c *gin.Context) {
 
 		return
 	}
+	// check status
+	if user.BlockStatus {
 
+		c.JSON(http.StatusBadRequest, gin.H{
+
+			"error": "user is blocked",
+		})
+		return
+	}
 	// Compare sent in pass with saved user with pass
 
 	err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(body.Password))
@@ -184,7 +190,6 @@ func LoginUser(c *gin.Context) {
 		"message": "login sucess",
 	})
 
-	UserLogStatus = true
 }
 
 // user profile
@@ -192,15 +197,6 @@ func LoginUser(c *gin.Context) {
 func UserProfile(c *gin.Context) {
 
 	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
-
-	ok := UserLogStatus
-
-	if ok {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "failed to read user",
-		})
-		return
-	}
 
 	user, _ := c.Get("user")
 
@@ -215,15 +211,6 @@ func UserProfile(c *gin.Context) {
 func UserEdit(c *gin.Context) {
 
 	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
-
-	ok := UserLogStatus
-
-	if ok {
-		c.JSON(http.StatusBadRequest, gin.H{
-			"error": "failed to read user",
-		})
-		return
-	}
 
 	user, _ := c.Get("user")
 

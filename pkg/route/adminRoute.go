@@ -14,4 +14,5 @@ func AdminRoute(c *gin.Engine) {
 	c.GET("/userview", middleware.AdminAuth, controller.UserView)
 	c.GET("/deleteuser", middleware.AdminAuth, controller.UserDelete)
 	c.PUT("/edituser", middleware.AdminAuth, controller.EditUser)
+	c.PATCH("/userblock", middleware.AdminAuth, controller.BlockUser)
 }
