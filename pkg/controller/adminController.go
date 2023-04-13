@@ -23,6 +23,7 @@ Edit 	user
 
 var AdminLogStatus = false
 
+// Admin Login   Data collect from database
 func AdminLogin(c *gin.Context) {
 
 	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
@@ -110,6 +111,87 @@ func AdminLogin(c *gin.Context) {
 	AdminLogStatus = true
 }
 
+/*
+// Admin Login  Data collect from .env
+func AdminLogIn(c *gin.Context) {
+
+	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
+
+	var body struct {
+		// Name     string
+		Email    string
+		Password string
+	}
+
+	if c.Bind(&body) != nil {
+
+		c.JSON(http.StatusBadRequest, gin.H{
+
+			"error": "failed to read Admin",
+		})
+	}
+
+	AdminEmail := os.Getenv("ADMINMAIL")        // get Admin mail
+	AdminPassword := os.Getenv("ADMINPASSWORD") // get admin pass
+	AdminId := os.Getenv("ADMINID")
+
+	if body.Email == AdminEmail {
+
+		if body.Password == AdminPassword {
+
+			token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+
+				"sub": AdminId,
+
+				"exp": time.Now().Add(time.Hour * 24).Unix(),
+			})
+
+			// Sign and get the complete encoded token as a string using the secret
+
+			tokenString, err := token.SignedString([]byte(os.Getenv("ADMINKEY")))
+
+			if err != nil {
+
+				c.JSON(http.StatusBadRequest, gin.H{
+
+					"error": "invalid to create jwt token",
+				})
+
+				return
+			}
+			c.SetSameSite(http.SameSiteLaxMode)
+
+			c.SetCookie("AdminToken", tokenString, 3600*24*30, "", "", false, true)
+
+			c.JSON(http.StatusOK, gin.H{
+
+				// "token":   tokenString,
+				"message": "admin login sucess",
+			})
+
+			AdminLogStatus = true
+		} else {
+
+			c.JSON(http.StatusBadRequest, gin.H{
+
+				"error": "invalid email or password",
+			})
+
+			return
+		}
+	} else {
+
+		c.JSON(http.StatusBadRequest, gin.H{
+
+			"error": "invalid email or password",
+		})
+
+		return
+	}
+}
+*/
+
+// Admin Logout
 func AdminLogout(c *gin.Context) {
 
 	c.Writer.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
