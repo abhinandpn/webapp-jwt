@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"jwt/pkg/database"
 	"jwt/pkg/models"
 	"net/http"
@@ -362,36 +361,34 @@ func BlockUser(c *gin.Context) {
 
 		return
 	}
-	fmt.Println("----------------->>>", user)
-	// Prev Status
 
-	c.JSON(http.StatusOK, gin.H{
-
-		"User Previous Blocked Status": user.BlockStatus,
-	})
-
-	// database.DB.Model(&user).Where("id = ?", UserId).Update("block_status", false)
 	if user.BlockStatus {
 		unblock := `update users set block_status=$1 where id=$2 `
 		if err := database.DB.Exec(unblock, false, user.ID).Error; err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{
-				"err": "cant unblock",
+				"err": err.Error(),
 			})
 		}
+		c.JSON(http.StatusOK, gin.H{
+			"allert": "user is un-blocked",
+		})
 	} else {
 		block := `update users set block_status=$1 where id=$2 `
 		if err := database.DB.Exec(block, true, user.ID).Error; err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{
-				"err": "cant block user",
+				"err": err.Error(),
 			})
 		}
+		c.JSON(http.StatusOK, gin.H{
+			"allert": "user is blocked",
+		})
 	}
 
 	c.JSON(http.StatusOK, gin.H{
 
-		"user id ":  user.ID,
-		"user Name": user.Name,
-		"allert":    "This User is Blocked Now ..............!!",
+		"user id ":          user.ID,
+		"user Name":         user.Name,
+		"user Block Status": user.BlockStatus,
 	})
 
 }
