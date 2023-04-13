@@ -11,6 +11,7 @@ func UserRoute(c *gin.Engine) {
 
 	c.POST("/usersignup", controller.SignUpUser)
 	c.POST("/userlogin", controller.LoginUser)
+	c.POST("userlogout", middleware.UserAuth, controller.UserLogout)
 	c.GET("/userprofile", middleware.UserAuth, controller.UserProfile)
 	c.PUT("/useredit", middleware.UserAuth, controller.UserEdit)
 }
