@@ -182,7 +182,7 @@ func AdminLogAuth(c *gin.Context) {
 		// 	c.JSON(http.StatusBadRequest, gin.H{
 
 		// 		"error": "admin not found",
-		// 	})
+		// 	})e
 		// }
 
 		// attach of req
