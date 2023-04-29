@@ -53,13 +53,13 @@ func AdminLogin(c *gin.Context) {
 
 		c.JSON(http.StatusBadRequest, gin.H{
 
-			"error": "invalid email or password",
+			"error": "invalid email or password 1",
 		})
 
 		return
 	}
 
-	// Compare sent in pass with saved user with pass
+	// Compare sent in pass with saved admin with pass
 
 	err := bcrypt.CompareHashAndPassword([]byte(admin.Password), []byte(body.Password))
 
@@ -67,7 +67,7 @@ func AdminLogin(c *gin.Context) {
 
 		c.JSON(http.StatusBadRequest, gin.H{
 
-			"error": "invalid email or password",
+			"error": "invalid email or password 2",
 		})
 
 		return
