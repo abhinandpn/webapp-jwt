@@ -1,7 +1,8 @@
 
-CODE IS REBUILDING...... UPDATING...!!!
 
-WEB-APP
+# Simple web-App with JWT-Auth
+
+> Using Gin frame work and Postgress database 
  testing
 Simple web application written in golang using postgres database
 
