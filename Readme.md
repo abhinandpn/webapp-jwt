@@ -149,3 +149,6 @@ Upcomming Function
 Upcomming Functionality
 
  * Template Loading and Front End Design
+
+
+ ![Alt](https://repobeats.axiom.co/api/embed/4ef163f6c85c3ad31c462d02bad081c18313d076.svg "Repobeats analytics image")
